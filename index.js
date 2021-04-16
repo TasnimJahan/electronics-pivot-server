@@ -29,6 +29,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 client.connect(err => {
 //   const appointmentCollection = client.db(`${process.env.DB_NAME}`).collection("appointment");
   const adminCollection = client.db(`${process.env.DB_NAME}`).collection("admin");
+  const serviceCollection = client.db(`${process.env.DB_NAME}`).collection("services");
 
 
   
@@ -52,6 +53,20 @@ app.get('/admins', (req, res) => {
 });
 
 
+app.post("/addServices",(req, res) => {
+    const newInfo = req.body;
+    serviceCollection.insertOne(newInfo)
+    .then(result => {
+        res.send(result.insertedCount > 0)
+    })
+})
+
+app.get('/services', (req, res) => {
+    serviceCollection.find({})
+        .toArray((err, documents) => {
+            res.send(documents);
+        })
+});
 
 
 
