@@ -4,12 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "start:dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Porgramming-Hero-web-course/complete-website-server-TasnimJahan.git"
+  },
+  "author": "tasnim",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Porgramming-Hero-web-course/complete-website-server-TasnimJahan/issues"
+  },
+  "homepage": "https://github.com/Porgramming-Hero-web-course/complete-website-server-TasnimJahan#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
