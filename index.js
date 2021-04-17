@@ -79,6 +79,15 @@ app.get('/services', (req, res) => {
         })
 });
 
+app.get('/services/:id', (req, res) => {
+    const id = ObjectId(req.params.id);
+    serviceCollection.find(id)
+    .toArray((err,items) => {
+      res.send(items);
+    })
+})
+
+
 
 
 
