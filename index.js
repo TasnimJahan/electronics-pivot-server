@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express();
 const cors = require('cors');
-const fs = require('fs-extra');
+// const fs = require('fs-extra');
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 // const fileUpload =require('express-fileUpload');
@@ -30,6 +30,7 @@ client.connect(err => {
 //   const appointmentCollection = client.db(`${process.env.DB_NAME}`).collection("appointment");
   const adminCollection = client.db(`${process.env.DB_NAME}`).collection("admin");
   const serviceCollection = client.db(`${process.env.DB_NAME}`).collection("services");
+  const reviewCollection = client.db(`${process.env.DB_NAME}`).collection("reviews");
 
 
   
@@ -67,6 +68,17 @@ app.get('/services', (req, res) => {
             res.send(documents);
         })
 });
+
+
+
+
+app.post("/addReview",(req, res) => {
+    const newInfo = req.body;
+    reviewCollection.insertOne(newInfo)
+    .then(result => {
+        res.send(result.insertedCount > 0)
+    })
+})
 
 
 
