@@ -56,7 +56,7 @@ app.get('/admins', (req, res) => {
 //To see admin or not
 app.post('/isAdmin', (req,res)=> {
   const email = req.body.email;
-  doctorCollection.find({ email : email })
+  adminCollection.find({ email : email })
   .toArray((err,doctors) =>{
     res.send(doctors.length > 0);
   })
