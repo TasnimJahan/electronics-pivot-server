@@ -45,13 +45,23 @@ client.connect(err => {
 
 
 
-// j j doctor golo ache tader list eith name and pic show kora 
+// get admin
 app.get('/admins', (req, res) => {
     adminCollection.find({})
         .toArray((err, documents) => {
             res.send(documents);
         })
 });
+
+//To see admin or not
+app.post('/isAdmin', (req,res)=> {
+  const email = req.body.email;
+  doctorCollection.find({ email : email })
+  .toArray((err,doctors) =>{
+    res.send(doctors.length > 0);
+  })
+})
+
 
 
 app.post("/addServices",(req, res) => {
