@@ -80,6 +80,13 @@ app.post("/addReview",(req, res) => {
     })
 })
 
+app.get('/reviews', (req, res) => {
+    reviewCollection.find({})
+        .toArray((err, documents) => {
+            res.send(documents);
+        })
+});
+
 
 
 
