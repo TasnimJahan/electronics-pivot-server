@@ -134,7 +134,15 @@ app.get('/allBookings', (req, res) => {
 });
 
 
-
+app.delete('/deleteService/:id',(req, res) => {
+    const id = ObjectId(req.params.id);
+    serviceCollection.deleteOne({_id: id})
+    .then(documents => {
+      console.log(documents);
+      res.send(documents.deletedCount > 0);
+    })
+  })
+ 
 
 
 
