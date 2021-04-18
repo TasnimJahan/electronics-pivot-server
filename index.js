@@ -31,6 +31,7 @@ client.connect(err => {
   const adminCollection = client.db(`${process.env.DB_NAME}`).collection("admin");
   const serviceCollection = client.db(`${process.env.DB_NAME}`).collection("services");
   const reviewCollection = client.db(`${process.env.DB_NAME}`).collection("reviews");
+  const bookingCollection = client.db(`${process.env.DB_NAME}`).collection("bookings");
 
 
   
@@ -105,6 +106,34 @@ app.get('/reviews', (req, res) => {
             res.send(documents);
         })
 });
+
+
+
+app.post('/addBook', (req, res)=>{
+    const newOrders =req.body;
+    bookingCollection.insertOne(newOrders)
+    .then(result =>{
+        res.send(result.insertedCount > 0 );
+        console.log(result);
+    })
+    console.log(newOrders);
+})
+
+app.get('/bookings', (req, res) => {
+    bookingCollection.find({email: req.query.email})
+        .toArray((err, documents) => {
+            res.send(documents);
+        })
+});
+
+app.get('/allBookings', (req, res) => {
+    bookingCollection.find({})
+        .toArray((err, documents) => {
+            res.send(documents);
+        })
+});
+
+
 
 
 
